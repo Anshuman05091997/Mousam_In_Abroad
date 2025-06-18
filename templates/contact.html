@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="py-16">
+    <div class="container mx-auto px-4">
+        <h1 class="text-4xl font-bold text-center mb-12">Contact Us</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <!-- Contact Information -->
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold mb-6">Get in Touch</h2>
+                
+                <div class="space-y-6">
+                    <div class="flex items-start">
+                        <i class="fas fa-envelope text-navy text-xl mt-1 mr-4"></i>
+                        <div>
+                            <h3 class="font-semibold">Email</h3>
+                            <a href="mailto:mousaminabroad@gmail.com" class="text-gray-600 hover:text-navy">
+                                mousaminabroad@gmail.com
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <i class="fab fa-whatsapp text-navy text-xl mt-1 mr-4"></i>
+                        <div>
+                            <h3 class="font-semibold">WhatsApp</h3>
+                            <a href="https://wa.me/4915759876543" class="text-gray-600 hover:text-navy">
+                                +49 1575 9876543
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <i class="far fa-clock text-navy text-xl mt-1 mr-4"></i>
+                        <div>
+                            <h3 class="font-semibold">Office Hours</h3>
+                            <p class="text-gray-600">Monday – Friday, 10 AM – 5 PM CET</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8">
+                    <h3 class="font-semibold mb-4">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/mousam_in_abroad/" class="text-navy hover:text-skyblue text-2xl">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/mousam-inabroad-325095370/" class="text-navy hover:text-skyblue text-2xl">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@MousamInAbroad" class="text-navy hover:text-skyblue text-2xl">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold mb-6">Send us a Message</h2>
+                
+                <form method="POST" class="space-y-6">
+                    {{ form.hidden_tag() }}
+                    
+                    <div>
+                        <label class="block text-gray-700 mb-2">Name</label>
+                        {{ form.name(class_="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-navy") }}
+                        {% for error in form.name.errors %}
+                            <span class="text-red-500 text-sm">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-700 mb-2">Email</label>
+                        {{ form.email(class_="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-navy") }}
+                        {% for error in form.email.errors %}
+                            <span class="text-red-500 text-sm">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-700 mb-2">Subject</label>
+                        {{ form.subject(class_="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-navy") }}
+                        {% for error in form.subject.errors %}
+                            <span class="text-red-500 text-sm">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-700 mb-2">Message</label>
+                        {{ form.message(class_="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-navy h-32") }}
+                        {% for error in form.message.errors %}
+                            <span class="text-red-500 text-sm">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-navy text-white py-3 rounded-lg hover:bg-opacity-90 transition">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Map Section -->
+        <div class="mt-16">
+            <h2 class="text-2xl font-bold text-center mb-8">Our Location</h2>
+            <div class="w-full h-96 bg-gray-200 rounded-lg">
+                <!-- Replace with actual Google Maps embed code -->
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9916256937595!2d2.292292615509614!3d48.85837007928757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e2964e34e2d%3A0x8ddca9ee380ef7e0!2sEiffel%20Tower!5e0!3m2!1sen!2sfr!4v1647874582978!5m2!1sen!2sfr" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+        
+        <!-- CTA Section -->
+        <div class="mt-16 text-center">
+            <h2 class="text-3xl font-bold mb-4">Ready to Start Your Germany Journey?</h2>
+            <p class="text-xl mb-8">Book a free consultation call today!</p>
+            <a href="/appointment" class="bg-coral text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-opacity-90 transition">
+                Book Free Consultation
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %} 

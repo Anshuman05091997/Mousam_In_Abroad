@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mousam In Abroad{% endblock %}</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Custom Colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#001F3F',
+                        skyblue: '#87CEFA',
+                        coral: '#FF6B6B',
+                    }
+                }
+            }
+        }
+    </script>
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-gray-50">
+    <!-- Sticky Navbar -->
+    <nav class="bg-navy text-white sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <a href="/" class="text-2xl font-bold">Mousam In Abroad</a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-6">
+                    <a href="/" class="hover:text-skyblue">Home</a>
+                    <a href="/about" class="hover:text-skyblue">About</a>
+                    <a href="/services" class="hover:text-skyblue">Services</a>
+                    <a href="/contact" class="hover:text-skyblue">Contact</a>
+                    <a href="/appointment" class="bg-coral px-4 py-2 rounded hover:bg-opacity-90">Book Appointment</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden" id="mobile-menu-button">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="md:hidden hidden" id="mobile-menu">
+                <div class="flex flex-col space-y-4 pb-4">
+                    <a href="/" class="hover:text-skyblue">Home</a>
+                    <a href="/about" class="hover:text-skyblue">About</a>
+                    <a href="/services" class="hover:text-skyblue">Services</a>
+                    <a href="/contact" class="hover:text-skyblue">Contact</a>
+                    <a href="/appointment" class="bg-coral px-4 py-2 rounded hover:bg-opacity-90 text-center">Book Appointment</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Chatbot Widget -->
+    <div id="chatbot-widget" class="fixed bottom-4 right-4 z-50">
+        <!-- Chat Button -->
+        <button id="chat-button" class="bg-coral text-white p-4 rounded-full shadow-lg hover:bg-opacity-90 transition">
+            <i class="fas fa-comments text-2xl"></i>
+        </button>
+        
+        <!-- Chat Window -->
+        <div id="chat-window" class="hidden absolute bottom-16 right-0 w-80 bg-white rounded-lg shadow-xl border">
+            <!-- Chat Header -->
+            <div class="bg-navy text-white p-4 rounded-t-lg">
+                <div class="flex justify-between items-center">
+                    <h3 class="font-semibold">Mousam In Abroad Assistant</h3>
+                    <button id="close-chat" class="text-white hover:text-gray-300">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Chat Messages -->
+            <div id="chat-messages" class="h-96 overflow-y-auto p-4 space-y-4">
+                <div class="flex">
+                    <div class="bg-gray-100 rounded-lg p-3 max-w-xs">
+                        <p class="text-sm">Hello! Welcome to Mousam In Abroad. How can I help you with your Germany study journey?</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chat Input -->
+            <div class="p-4 border-t">
+                <div class="flex space-x-2">
+                    <input type="text" id="chat-input" placeholder="Type your message..." 
+                           class="flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-navy">
+                    <button id="send-message" class="bg-navy text-white px-4 py-2 rounded-lg hover:bg-opacity-90">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-navy text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                    <p><i class="fas fa-envelope mr-2"></i> mousaminabroad@gmail.com</p>
+                    <p><i class="fab fa-whatsapp mr-2"></i> +49 1575 9876543</p>
+                    <p><i class="far fa-clock mr-2"></i> Mon-Fri, 10 AM - 5 PM CET</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/mousam_in_abroad/" class="hover:text-skyblue">
+                            <i class="fab fa-instagram text-2xl"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/mousam-inabroad-325095370/" class="hover:text-skyblue">
+                            <i class="fab fa-linkedin text-2xl"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@MousamInAbroad" class="hover:text-skyblue">
+                            <i class="fab fa-youtube text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="/services" class="hover:text-skyblue">Our Services</a></li>
+                        <li><a href="/appointment" class="hover:text-skyblue">Book Appointment</a></li>
+                        <li><a href="/contact" class="hover:text-skyblue">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-8 pt-8 border-t border-gray-700">
+                <p>Built with ❤️ by Anshuman & Mousami – Mousam In Abroad</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Chatbot functionality
+        const chatButton = document.getElementById('chat-button');
+        const chatWindow = document.getElementById('chat-window');
+        const closeChat = document.getElementById('close-chat');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        const sendMessage = document.getElementById('send-message');
+
+        // Toggle chat window
+        chatButton.addEventListener('click', function() {
+            chatWindow.classList.toggle('hidden');
+        });
+
+        closeChat.addEventListener('click', function() {
+            chatWindow.classList.add('hidden');
+        });
+
+        // Send message function
+        function sendChatMessage() {
+            const message = chatInput.value.trim();
+            if (message) {
+                // Add user message
+                addMessage(message, 'user');
+                chatInput.value = '';
+
+                // Send to backend
+                fetch('/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: message })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    addMessage(data.response, 'bot');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    addMessage('Sorry, I\'m having trouble responding right now.', 'bot');
+                });
+            }
+        }
+
+        // Add message to chat
+        function addMessage(message, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'flex ' + (sender === 'user' ? 'justify-end' : 'justify-start');
+            
+            const messageBubble = document.createElement('div');
+            messageBubble.className = (sender === 'user' 
+                ? 'bg-navy text-white rounded-lg p-3 max-w-xs' 
+                : 'bg-gray-100 rounded-lg p-3 max-w-xs');
+            messageBubble.innerHTML = `<p class="text-sm">${message}</p>`;
+            
+            messageDiv.appendChild(messageBubble);
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Event listeners
+        sendMessage.addEventListener('click', sendChatMessage);
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendChatMessage();
+            }
+        });
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html> 
